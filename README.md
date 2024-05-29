@@ -48,7 +48,7 @@ provider "aws" {
 }
 ```
 
-#### Create S3 Bucket for images (e.g, my-image-bucket)
+##### Create S3 Bucket for images (e.g, my-image-bucket)
 ```
 resource "aws_s3_bucket" "image_bucket" {
   bucket = "my-image-bucket"
@@ -56,5 +56,46 @@ resource "aws_s3_bucket" "image_bucket" {
   tags = {
     Name = "Image Bucket with Watermarking"
   }
+}
+```
+
+##### Define Lambda function (Download a TrueType font that the Lambda function will use to add a watermark to an image. Copy and paste the following commands. Also replace with the right name for the Lambda_function zip)
+```
+resource "aws_lambda_function" "watermark_lambda" {
+  filename         = "lambda_function.zip"  # Replace with your Lambda zip file
+  function_name    = "image-watermarker"
+  role             = aws_iam_role.lambda_role.arn  # Reference the IAM role
+  handler          = "handler.main"  # Replace with your function's handler
+  runtime          = "python3.9"  # Adjust based on your function's runtime
+```
+
+##### Specify environment variables if needed
+```
+  environment {
+    variables = {
+      # key = "value"
+    }
+  }
+}
+```
+
+##### Create IAM Role for the Lambda function
+```
+resource "aws_iam_role" "lambda_role" {
+  name = "lambda_role"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
 }
 ```
