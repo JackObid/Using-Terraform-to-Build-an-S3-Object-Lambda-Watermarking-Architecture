@@ -1,0 +1,35 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			"Action": [
+				"lambda:CreateFunction",
+				"s3:PutObject",
+				"s3:GetObject",
+				"lambda:InvokeFunction",
+				"lambda:DeleteFunction"
+			],
+			"Resource": "arn:aws:s3:::*/*"
+		},
+		{
+			"Sid": "VisualEditor1",
+			"Effect": "Allow",
+			"Action": [
+				"s3:CreateAccessPoint",
+				"s3:CreateAccessPointForObjectLambda",
+				"s3:DeleteAccessPoint",
+				"s3:CreateBucket",
+				"s3:ListBucket",
+				"s3:DeleteBucket",
+				"s3:DeleteAccessPointForObjectLambda"
+			],
+			"Resource": [
+				"arn:aws:s3:::*",
+				"arn:aws:s3-object-lambda:*:189370223402:accesspoint/*",
+				"arn:aws:s3:*:189370223402:accesspoint/*"
+			]
+		}
+	]
+}
