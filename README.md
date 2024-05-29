@@ -41,3 +41,20 @@ Create a new file (e.g., main.tf) to house your Terraform configuration.
 
 ##### Provider Block:
 Start with the provider block specifying the AWS provider and region:
+```
+# Configure AWS provider
+provider "aws" {
+  region = "us-east-1"  # Replace with your desired region
+}
+```
+
+#### Create S3 Bucket for images (e.g, my-image-bucket)
+```
+resource "aws_s3_bucket" "image_bucket" {
+  bucket = "my-image-bucket"
+
+  tags = {
+    Name = "Image Bucket with Watermarking"
+  }
+}
+```
