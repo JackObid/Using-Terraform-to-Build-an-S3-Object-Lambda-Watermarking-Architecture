@@ -26,8 +26,9 @@ lambda:InvokeFunction (to test the Lambda function during deployment)
 iam:AttachRolePolicy
 iam:CreateRole
 iam:PutRolePolicy
-
-#### For Resource Deletion (Optional, but recommended for clean-up):
+```
+For Resource Deletion (Optional, but recommended for clean-up):
+```
 s3:DeleteBucket
 s3:DeleteAccessPoint
 s3:DeleteAccessPointForObjectLambda
