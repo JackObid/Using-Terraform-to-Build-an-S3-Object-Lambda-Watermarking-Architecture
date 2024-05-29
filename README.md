@@ -14,7 +14,7 @@ The Terraform IAM user needs specific permissions to create and manage the resou
 
 #### For Resource Creation:
 
-''''
+```
 s3:CreateBucket
 s3:PutObject (to upload the Lambda function code to S3)
 s3:ListBucket
@@ -33,7 +33,7 @@ s3:DeleteAccessPoint
 s3:DeleteAccessPointForObjectLambda
 lambda:DeleteFunction
 iam:DeleteRole
-''''
+```
 #### Steps:
 #### Define Terraform Configuration File:
 Create a new file (e.g., main.tf) to house your Terraform configuration.
