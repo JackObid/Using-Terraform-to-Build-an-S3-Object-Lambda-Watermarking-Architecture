@@ -3,7 +3,7 @@ Using Terraform to Build an S3 Object Lambda Watermarking Architecture
 
 ## Guide outlines how to leverage Terraform to create an AWS architecture utilizing S3 Object Lambda for dynamic image watermarking upon retrieval
 
-### Prerequisites:
+### Pre-Requisites:
 
 Terraform installed and configured: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 AWS provider configured for Terraform: https://registry.terraform.io/providers/hashicorp/aws/latest/docs
@@ -35,7 +35,7 @@ s3:DeleteAccessPointForObjectLambda
 lambda:DeleteFunction
 iam:DeleteRole
 ```
-#### Steps:
+### Steps
 #### Define Terraform Configuration File:
 Create a new file (e.g., main.tf) to house your Terraform configuration.
 
