@@ -133,3 +133,8 @@ resource "aws_s3control_object_lambda_access_point" "object_lambda_access_point"
 
 ### Important Note:
 The provided policy grants extensive permissions. Ensure it aligns with your specific security requirements. Consider using the principle of least privilege and limiting permissions based on your use case.
+
+#### Initialize Terraform
+ ```
+$ terraform init
+```
