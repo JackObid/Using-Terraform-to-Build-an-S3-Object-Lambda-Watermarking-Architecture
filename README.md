@@ -79,7 +79,7 @@ resource "aws_lambda_function" "watermark_lambda" {
 }
 ```
 
-##### Create IAM Role for the Lambda function
+##### Create an IAM role for the Lambda function with necessary permissions
 ```
 resource "aws_iam_role" "lambda_role" {
   name = "lambda_role"
@@ -99,3 +99,38 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 ```
+##### IAM Policy for Lambda to access S3 objects (reference the external policy file that you create like the attached that contains the correct permissions required for the Lambda function to interact with S3)
+```
+resource "aws_iam_policy" "lambda_policy" {
+  name = "lambda_policy"
+
+  policy = file("iam_policy.json")  # Reference the policy JSON file
+}
+```
+
+#### Attach IAM policy to the Lambda role
+```
+resource "aws_iam_role_policy_attachment" "attach_lambda_policy" {
+  role       = aws_iam_role.lambda_role.name  # Corrected to use `name` instead of `arn`
+  policy_arn = aws_iam_policy.lambda_policy.arn
+}
+```
+```
+#### Attach a policy to the IAM role granting S3 Object Lambda Access Point function for watermarking 
+```
+resource "aws_s3control_object_lambda_access_point" "object_lambda_access_point" {
+  name = "watermarked-images"
+  account_id = "YOUR_AWS_ACCOUNT_ID"  # Replace with your AWS account ID
+
+  configuration {
+    supporting_access_point = aws_s3_bucket.image_bucket.bucket  # Reference the supporting S3 bucket
+
+    transformation_configuration {
+      actions = ["GetObject"]  # Specify the actions that trigger the Lambda function
+
+      content_transformation {
+        aws_lambda {
+          function_arn = aws_lambda_function.watermark_lambda.arn
+        }
+      }
+  ```
