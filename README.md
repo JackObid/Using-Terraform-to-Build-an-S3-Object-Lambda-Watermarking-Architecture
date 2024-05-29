@@ -33,7 +33,7 @@ s3:DeleteAccessPoint
 s3:DeleteAccessPointForObjectLambda
 lambda:DeleteFunction
 iam:DeleteRole
-
+''''
 #### Steps:
 #### Define Terraform Configuration File:
 Create a new file (e.g., main.tf) to house your Terraform configuration.
