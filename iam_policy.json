@@ -27,8 +27,8 @@
 			],
 			"Resource": [
 				"arn:aws:s3:::*",
-				"arn:aws:s3-object-lambda:*:189370223402:accesspoint/*",
-				"arn:aws:s3:*:189370223402:accesspoint/*"
+				"arn:aws:s3-object-lambda:*:Your-ACOUNT-ID:accesspoint/*",
+				"arn:aws:s3:*:Your-ACOUNT-ID:accesspoint/*"
 			]
 		}
 	]
