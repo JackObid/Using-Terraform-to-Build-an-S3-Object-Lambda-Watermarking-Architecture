@@ -3,7 +3,7 @@ provider "aws" {
   region = "us-east-1"  # Replace with your desired region
 }
 
-# Create S3 Bucket for images (remove deprecated acl argument)
+# Create S3 Bucket for images 
 resource "aws_s3_bucket" "image_bucket" {
   bucket = "my-image-bucket"
 
@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "image_bucket" {
   }
 }
 
-# Define Lambda function (replace with your Lambda code zip)
+# Define Lambda function 
 resource "aws_lambda_function" "watermark_lambda" {
   filename         = "lambda_function.zip"  # Replace with your Lambda zip file
   function_name    = "image-watermarker"
@@ -48,7 +48,7 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 
-# IAM Policy for Lambda to access S3 objects (reference external policy file)
+# IAM Policy for Lambda to access S3 objects 
 resource "aws_iam_policy" "lambda_policy" {
   name = "lambda_policy"
 
@@ -61,7 +61,7 @@ resource "aws_iam_role_policy_attachment" "attach_lambda_policy" {
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
 
-# S3 Object Lambda Access Point for watermarking (corrected syntax)
+# S3 Object Lambda Access Point for watermarking 
 resource "aws_s3control_object_lambda_access_point" "object_lambda_access_point" {
   name = "watermarked-images"
   account_id = "YOUR_AWS_ACCOUNT_ID"  # Replace with your AWS account ID
